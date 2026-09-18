@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <div class="container my-5">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-primary text-white p-3">
+                <h3 class="mb-0" id="formTitle">Dynamic Form Application</h3>
+            </div>
+            <div class="card-body p-4">
+
+                <!-- Alert / Banner Message Area -->
+                <div id="alertContainer"></div>
+
+                <!-- Action Controls Banner (Shown after Save/Update) -->
+                <div id="successBanner" class="alert alert-success d-none mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="alert-heading mb-1" id="bannerTitle">Form Saved Successfully!</h5>
+                            <p class="mb-0">Form ID: <strong id="savedFormIdDisplay">-</strong></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-outline-success me-2" id="btnViewSaved">View</button>
+                            <button type="button" class="btn btn-success" id="btnUpdateSaved">Update</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDIT / CREATE FORM -->
+                <form id="dynamicForm">
+                    <!-- Fixed Fields Section -->
+                    <h5 class="border-bottom pb-2 mb-3 text-secondary">General Information</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label for="fixedName" class="form-label font-weight-bold">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="fixedName" required placeholder="Enter full name">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fixedAge" class="form-label">Age <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="fixedAge" required placeholder="Enter age">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fixedGender" class="form-label">Gender <span class="text-danger">*</span></label>
+                            <select class="form-select" id="fixedGender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Add Fields Toggle -->
+                    <div class="mb-4 p-3 bg-white border rounded">
+                        <label class="form-label fw-bold d-block">Do you want to add another field?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="addMoreToggle" id="toggleNo" value="No" checked>
+                            <label class="form-check-label" for="toggleNo">No</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="addMoreToggle" id="toggleYes" value="Yes">
+                            <label class="form-check-label" for="toggleYes">Yes</label>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Fields Container -->
+                    <div id="dynamicFieldsContainer" class="d-none mb-4">
+                        <h5 class="border-bottom pb-2 mb-3 text-secondary">Additional Dynamic Fields</h5>
+                        <div id="fieldsList"></div>
+
+                        <button type="button" class="btn btn-outline-primary mt-2" id="btnAddField">
+                            + Add Another Field
+                        </button>
+                    </div>
+
+                    <!-- Form Buttons -->
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4" id="btnSaveForm">Save Form</button>
+                        <button type="button" class="btn btn-secondary px-4 d-none" id="btnCancelEdit">Cancel</button>
+                    </div>
+                </form>
+
+                <!-- READ ONLY VIEW CONTAINER -->
+                <div id="viewFormContainer" class="d-none mt-4">
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                        <h4 class="text-primary mb-0" id="viewFormHeader">Form Preview</h4>
+                        <button class="btn btn-sm btn-outline-secondary" id="btnCloseView">Back to Form</button>
+                    </div>
+                    <div id="viewFormDetails" class="bg-white p-4 rounded border"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
